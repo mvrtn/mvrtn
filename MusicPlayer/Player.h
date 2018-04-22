@@ -2,7 +2,9 @@
 ref class Player
 {
 private:
-	//void open();
+	AxWMPLib::AxWindowsMediaPlayer^  axWindowsMediaPlayer1;
+	OpenFileDialog^ OpenFileDialog1 = gcnew OpenFileDialog();
+	void open();
 	//void play();
 	//void Pause();
 	//void Stop();

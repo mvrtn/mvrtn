@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Player.h"
 namespace MusicPlayer {
 
 	using namespace System;
@@ -9,7 +9,7 @@ namespace MusicPlayer {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::IO;
-
+	using namespace WMPLib;
 
 	/// <summary>
 	/// Podsumowanie informacji o MyForm
@@ -175,19 +175,19 @@ namespace MusicPlayer {
 			// openFileToolStripMenuItem
 			// 
 			this->openFileToolStripMenuItem->Name = L"openFileToolStripMenuItem";
-			this->openFileToolStripMenuItem->Size = System::Drawing::Size(124, 22);
+			this->openFileToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->openFileToolStripMenuItem->Text = L"Open File";
 			this->openFileToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::openFileToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this->toolStripSeparator1->Name = L"toolStripSeparator1";
-			this->toolStripSeparator1->Size = System::Drawing::Size(121, 6);
+			this->toolStripSeparator1->Size = System::Drawing::Size(177, 6);
 			// 
 			// quitToolStripMenuItem
 			// 
 			this->quitToolStripMenuItem->Name = L"quitToolStripMenuItem";
-			this->quitToolStripMenuItem->Size = System::Drawing::Size(124, 22);
+			this->quitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->quitToolStripMenuItem->Text = L"Quit";
 			this->quitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::quitToolStripMenuItem_Click);
 			// 
@@ -205,6 +205,7 @@ namespace MusicPlayer {
 			// 
 			// columnHeader1
 			// 
+			this->columnHeader1->Text = L"Œcie¿ka";
 			this->columnHeader1->Width = 363;
 			// 
 			// textBox1
@@ -264,8 +265,8 @@ private: System::Void openFileToolStripMenuItem_Click(System::Object^  sender, S
 			{
 				String^ strfilename = OpenFileDialog1->InitialDirectory + OpenFileDialog1->FileName;
 				MessageBox::Show(strfilename);
-				textBox1->Text = OpenFileDialog1->FileName;
-				listViewItem = gcnew Windows::Forms::ListViewItem(this->textBox1->Text);
+				//textBox1->Text = OpenFileDialog1->FileName;
+				listViewItem = gcnew Windows::Forms::ListViewItem(this->OpenFileDialog1->FileName);
 				this->listView1->Items->Add(this->listViewItem);
 				myStream->Close();
 			}
@@ -281,14 +282,14 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	
-	//System:Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer();
-	//player->SoundLocation = textBox1->Text;
-	//player->Load();
-	//player->PlaySync();
-	axWindowsMediaPlayer1->URL = OpenFileDialog1->FileName;
-	axWindowsMediaPlayer1->Ctlcontrols->play();
-	
+	Player::open();
+
+	//if (axWindowsMediaPlayer1->URL != OpenFileDialog1->FileName)
+		//axWindowsMediaPlayer1->URL = OpenFileDialog1->FileName;
+
+	//axWindowsMediaPlayer1->Ctlcontrols->play();
+
+
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	axWindowsMediaPlayer1->Ctlcontrols->pause();

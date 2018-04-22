@@ -1,6 +1,4 @@
 #pragma once
-#include <cstring>
-
 
 namespace MusicPlayer {
 
@@ -11,7 +9,7 @@ namespace MusicPlayer {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::IO;
-	using namespace WMPLib;
+
 
 	/// <summary>
 	/// Podsumowanie informacji o MyForm
@@ -283,18 +281,12 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	//try {
-	//System:Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer();
-		//player->SoundLocation = textBox1->Text;
-		//player->Load();
-		//player->PlaySync();
-		
-	//}
-	//catch (Win32Exception^ ex)
-	//{
-		//MessageBox::Show(ex->Message);
-	//}
 	
+	//System:Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer();
+	//player->SoundLocation = textBox1->Text;
+	//player->Load();
+	//player->PlaySync();
+	axWindowsMediaPlayer1->URL = OpenFileDialog1->FileName;
 	axWindowsMediaPlayer1->Ctlcontrols->play();
 	
 }
